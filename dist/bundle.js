@@ -86,14 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/img/test.jpg":
-/*!**************************!*\
-  !*** ./src/img/test.jpg ***!
-  \**************************/
+/***/ "./src/img/png.png":
+/*!*************************!*\
+  !*** ./src/img/png.png ***!
+  \*************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"imgs/test_0fb46.jpg\";\n\n//# sourceURL=webpack:///./src/img/test.jpg?");
+eval("module.exports = __webpack_require__.p + \"imgs/png_de21d.png\";\n\n//# sourceURL=webpack:///./src/img/png.png?");
 
 /***/ }),
 
@@ -105,7 +105,7 @@ eval("module.exports = __webpack_require__.p + \"imgs/test_0fb46.jpg\";\n\n//# s
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _img_test_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./img/test.jpg */ \"./src/img/test.jpg\");\n/* harmony import */ var _img_test_jpg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_img_test_jpg__WEBPACK_IMPORTED_MODULE_0__);\nconsole.log('index.js')\n\n// var testImg = require('./img/test.jpg')\n\nvar img = new Image()\nimg.src = _img_test_jpg__WEBPACK_IMPORTED_MODULE_0___default.a\nvar root = document.getElementById('root')\nroot.appendChild(img)\nconsole.log('testImg', _img_test_jpg__WEBPACK_IMPORTED_MODULE_0___default.a)\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _img_png_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./img/png.png */ \"./src/img/png.png\");\n/* harmony import */ var _img_png_png__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_img_png_png__WEBPACK_IMPORTED_MODULE_0__);\n// import testImg from './img/test.jpg'\n\n\nvar img = new Image()\nimg.src = _img_png_png__WEBPACK_IMPORTED_MODULE_0___default.a\nimg.classList.add('avatar')\nvar root = document.getElementById('root')\nroot.appendChild(img)\nconsole.log('testImg', _img_png_png__WEBPACK_IMPORTED_MODULE_0___default.a)\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

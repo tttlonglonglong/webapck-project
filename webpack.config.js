@@ -1,4 +1,5 @@
 const path = require('path')
+const ImageminPlugin = require('image-webpack-loader')
 module.exports = {
   mode: 'development',
   entry: {
@@ -14,18 +15,45 @@ module.exports = {
     rules: [
       {
         test: /.(jpg|png|gif)$/,
-        use: {
-          loader: 'file-loader',
-          // loader: 'url-loader',
-          options: {
-            // placeholder 占位符
-            name: '[name]_[hash:5].[ext]',
-            // 打包到哪个文件夹
-            outputPath: 'imgs/',
-            limit: 2048,
-            quality: 10
+        use: [
+          {
+            loader: 'file-loader',
+            // loader: 'url-loader',
+            options: {
+              // placeholder 占位符
+              name: '[name]_[hash:5].[ext]',
+              // 打包到哪个文件夹
+              outputPath: 'imgs/',
+              limit: 2048
+            }
+          },
+          {
+            loader: 'image-webpack-loader', // 压缩图片
+            options: {
+              // progressive: true,
+              bypassOnDebug: true,
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75
+              }
+            }
           }
-        }
+        ]
       }
     ]
   }
