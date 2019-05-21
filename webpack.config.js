@@ -1,5 +1,7 @@
 const path = require('path')
 const ImageminPlugin = require('image-webpack-loader')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
@@ -71,5 +73,15 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    }),
+    new CleanWebpackPlugin({
+      root: __dirname + '/dist',
+      verbose: true
+      // dry: false
+    })
+  ]
 }
