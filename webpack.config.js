@@ -20,6 +20,14 @@ module.exports = {
         use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 2 } }, 'sass-loader', 'postcss-loader']
       },
       {
+        test: /.(eot|svg|ttf|woff|woff2)$/,
+        // loader的执行顺序，从下至上，从右到左
+        //importLoaders: 2, scss中import的scss文件依然要走 sass-loader 和 postcss-loader 这俩个loader
+        use: {
+          loader: 'file-loader'
+        }
+      },
+      {
         test: /.(jpg|png|gif)$/,
         use: [
           {
