@@ -14,6 +14,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /.(less|css|scss)$/,
+        // loader的执行顺序，从下至上，从右到左
+        //importLoaders: 2, scss中import的scss文件依然要走 sass-loader 和 postcss-loader 这俩个loader
+        use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 2 } }, 'sass-loader', 'postcss-loader']
+      },
+      {
         test: /.(jpg|png|gif)$/,
         use: [
           {
@@ -22,6 +28,7 @@ module.exports = {
             options: {
               // placeholder 占位符
               name: '[name]_[hash:5].[ext]',
+              modules: true,
               // 打包到哪个文件夹
               outputPath: 'imgs/',
               limit: 2048
