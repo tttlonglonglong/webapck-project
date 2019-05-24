@@ -4,14 +4,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   mode: 'development',
+  devtool: 'source-map',
   entry: {
-    mian: './src/index.js'
+    bundle: './src/index.js',
+    sub: './src/index.js'
   },
   output: {
-    // 打包出来的文件名
-    filename: 'bundle.js',
-    // 打包出来的文件路径
+    // publicPath: '/',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
+  },
+  devServer: {
+    // 服务器启动在哪个文件夹
+    // contentBase: './dist',
+    open: true,
+    port: 8081,
+    proxy: {
+      // 请求的代理地址
+      '/api': {
+        target: 'http://locahost:300',
+        pathRewrite: { '^/api': '' }
+      }
+    }
   },
   module: {
     rules: [
