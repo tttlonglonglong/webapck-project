@@ -1,6 +1,7 @@
+import '@babel/polyfill'
 import './index.scss'
 
-var root = document.getElementById('root')
-root.innerHTML = '<div class="iconfont icon-download">abc</div>'
-
-console.log(33333)
+const arr = [new Promise(() => {}), new Promise(() => {})]
+arr.map(item => {
+  console.log('arr-map-item', item)
+})

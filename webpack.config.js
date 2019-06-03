@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const ImageminPlugin = require('image-webpack-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -6,8 +7,7 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   entry: {
-    bundle: './src/index.js',
-    sub: './src/index.js'
+    bundle: './src/index.js'
   },
   output: {
     // publicPath: '/',
@@ -19,6 +19,9 @@ module.exports = {
     // contentBase: './dist',
     open: true,
     port: 8081,
+    hot: true,
+    // // 即使热更替没有生效，也不让浏览器重新刷新
+    // hotOnly: true,
     proxy: {
       // 请求的代理地址
       '/api': {
@@ -29,6 +32,40 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+        // options: {
+        //   // presets: [
+        //   //   [
+        //   //     '@babel/preset-env',
+        //   //     {
+        //   //       //不会把所有poolyfill都加到打包代码中，只加载用到的
+        //   //       useBuiltIns: 'usage',
+        //   //       targets: {
+        //   //         edge: '17',
+        //   //         firefox: '60',
+        //   //         chrome: '67',
+        //   //         safari: '11.1'
+        //   //       }
+        //   //     }
+        //   //   ]
+        //   // ]
+        //   plugins: [
+        //     [
+        //       '@babel/plugin-transform-runtime',
+        //       {
+        //         absoluteRuntime: false,
+        //         corejs: 2,
+        //         helpers: true,
+        //         regenerator: true,
+        //         useESModules: false
+        //       }
+        //     ]
+        //   ]
+        // }
+      },
       {
         test: /.(less|css|scss)$/,
         // loader的执行顺序，从下至上，从右到左
@@ -96,6 +133,7 @@ module.exports = {
       root: __dirname + '/dist',
       verbose: true
       // dry: false
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }

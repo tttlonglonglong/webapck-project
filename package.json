@@ -20,9 +20,17 @@
     "url": "https://github.com/tttlonglonglong/webpack-project/issues"
   },
   "homepage": "https://github.com/tttlonglonglong/webpack-project#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
+    "@babel/runtime-corejs2": "^7.4.5"
+  },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "autoprefixer": "^9.5.1",
+    "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^2.0.2",
     "css-loader": "^2.1.1",
     "express": "^4.17.0",

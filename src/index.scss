@@ -38,3 +38,7 @@
 .icon-zhankai:before {
   content: '\e60a';
 }
+
+div:nth-of-type(odd) {
+  background-color: red;
+}
