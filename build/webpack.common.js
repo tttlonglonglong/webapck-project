@@ -3,9 +3,8 @@ const webpack = require('webpack')
 const ImageminPlugin = require('image-webpack-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+
 module.exports = {
-  mode: 'production',
-  devtool: 'cheap-module-source-map',
   entry: {
     bundle: './src/index.js'
   },
@@ -13,22 +12,6 @@ module.exports = {
     // publicPath: '/',
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
-  },
-  devServer: {
-    // 服务器启动在哪个文件夹
-    // contentBase: './dist',
-    open: true,
-    port: 8081,
-    hot: true,
-    // // 即使热更替没有生效，也不让浏览器重新刷新
-    // hotOnly: true,
-    proxy: {
-      // 请求的代理地址
-      '/api': {
-        target: 'http://locahost:300',
-        pathRewrite: { '^/api': '' }
-      }
-    }
   },
   module: {
     rules: [
@@ -133,8 +116,7 @@ module.exports = {
       root: __dirname + '/dist',
       verbose: true
       // dry: false
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ],
   optimization: { usedExports: true }
 }
