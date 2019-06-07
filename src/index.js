@@ -1,7 +1,3 @@
-import '@babel/polyfill'
-import './index.scss'
+import { add } from './math'
 
-const arr = [new Promise(() => {}), new Promise(() => {})]
-arr.map(item => {
-  console.log('arr-map-item', item)
-})
+add(1, 2)

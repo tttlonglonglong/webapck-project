@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   mode: 'development',
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: {
     bundle: './src/index.js'
   },
@@ -135,5 +135,6 @@ module.exports = {
       // dry: false
     }),
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  optimization: { usedExports: true }
 }

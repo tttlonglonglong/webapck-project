@@ -1,5 +1,9 @@
 {
   "name": "webpack-project",
+  "sideEffects": [
+    "@babel/polly-fill ",
+    "*.css"
+  ],
   "version": "1.0.0",
   "description": "webpack工程化",
   "private": true,
@@ -23,12 +27,14 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "@babel/runtime": "^7.4.5",
-    "@babel/runtime-corejs2": "^7.4.5"
+    "@babel/runtime-corejs2": "^7.4.5",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.5.1",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^2.0.2",
@@ -39,6 +45,7 @@
     "image-webpack-loader": "^4.6.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
+    "react": "^16.8.6",
     "responsive-loader": "^1.2.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
