@@ -1,6 +1,7 @@
 // import _ from 'lodash' // 1MB
 async function getComponent() {
   //通过jsonP的方式，获取lodash的代码
+  // Magic Comments
   // const _ = await import(/* webpackChunkName: "lodash" */ 'lodash')
   return import(/* webpackChunkName: "lodash" */ 'lodash').then(module => {
     console.log('module', module)
