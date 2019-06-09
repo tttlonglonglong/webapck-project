@@ -7,11 +7,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   entry: {
     bundle: './src/index.js'
+    // lodash: './src/lodash.js'
   },
   output: {
     // publicPath: '/',
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '../dist')
   },
   module: {
     rules: [
@@ -113,10 +114,17 @@ module.exports = {
       template: 'index.html'
     }),
     new CleanWebpackPlugin({
-      root: __dirname + '/dist',
+      // 废弃了，默认移除output的配置
+      root: __dirname + '../',
       verbose: true
       // dry: false
     })
   ],
-  optimization: { usedExports: true }
+  optimization: {
+    // splitChunks: {
+    //   // 所有的代码都分割
+    //   chunks: 'all'
+    // },
+    usedExports: true
+  }
 }
