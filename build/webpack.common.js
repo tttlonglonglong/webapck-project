@@ -121,10 +121,29 @@ module.exports = {
     })
   ],
   optimization: {
-    // splitChunks: {
-    //   // 所有的代码都分割
-    //   chunks: 'all'
-    // },
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      // maxSize: 50000, // 50k, lodash 1MB
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          filename: 'vendors.js',
+          priority: -10
+        },
+        default: {
+          // minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+          filename: 'common.js'
+        }
+      }
+    },
     usedExports: true
   }
 }
