@@ -133,7 +133,8 @@ module.exports = {
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          filename: 'vendors.js',
+          chunks: 'all',
+          // filename: 'vendors.js',
           priority: -10
         },
         default: {
