@@ -1,9 +1,17 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const commonConfig = require('./webpack.common.js')
 const devConfig = {
   mode: 'development',
+  output: {
+    // publicPath: '/',
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
+    path: path.resolve(__dirname, '../dist')
+  },
   devtool: 'cheap-module-eval-source-map',
+
   devServer: {
     // 服务器启动在哪个文件夹
     // contentBase: './dist',

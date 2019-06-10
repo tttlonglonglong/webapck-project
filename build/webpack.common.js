@@ -22,12 +22,7 @@ module.exports = {
     bundle: './src/index.js'
     // lodash: './src/lodash.js'
   },
-  output: {
-    // publicPath: '/',
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
-    path: path.resolve(__dirname, '../dist')
-  },
+
   module: {
     rules: [
       {
@@ -147,6 +142,7 @@ module.exports = {
     })
   ],
   optimization: {
+    runtimeChunk: { name: 'runtime' },
     usedExports: true,
     splitChunks: {
       chunks: 'all',
@@ -160,6 +156,7 @@ module.exports = {
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
           // filename: 'vendors.js',
           priority: -10
         },
@@ -184,5 +181,6 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  performance: false
 }

@@ -1,3 +1,5 @@
-import './index.scss'
-
-console.log('hello world：MiniCssExtractPlugin')
+import _ from 'lodash'
+import $ from 'jquery'
+const dom = $('div')
+dom.html(_.join(['dell', 'lee', 'hello'], '----1--'))
+$('body').append(dom)
