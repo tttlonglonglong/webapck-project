@@ -6,7 +6,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const devMode = process.env.NODE_ENV !== 'production'
 
+// console.log('NODE_ENV', NODE_ENV)
 console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+
 function recursiveIssuer(m) {
   if (m.issuer) {
     return recursiveIssuer(m.issuer)
@@ -28,36 +30,13 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
-        // options: {
-        //   // presets: [
-        //   //   [
-        //   //     '@babel/preset-env',
-        //   //     {
-        //   //       //不会把所有poolyfill都加到打包代码中，只加载用到的
-        //   //       useBuiltIns: 'usage',
-        //   //       targets: {
-        //   //         edge: '17',
-        //   //         firefox: '60',
-        //   //         chrome: '67',
-        //   //         safari: '11.1'
-        //   //       }
-        //   //     }
-        //   //   ]
-        //   // ]
-        //   plugins: [
-        //     [
-        //       '@babel/plugin-transform-runtime',
-        //       {
-        //         absoluteRuntime: false,
-        //         corejs: 2,
-        //         helpers: true,
-        //         regenerator: true,
-        //         useESModules: false
-        //       }
-        //     ]
-        //   ]
-        // }
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+          // 有issue
+          // { loader: 'imports-loader?this=>window' }
+        ]
       },
       {
         test: /.(less|css|scss)$/,
@@ -139,6 +118,12 @@ module.exports = {
       root: __dirname + '../',
       verbose: true
       // dry: false
+    }),
+    // 垫片
+    new webpack.ProvidePlugin({
+      $: 'jquery', // 模块中有 $ 字符串自动引入 jquery这个模块，并赋值给 $ 变量
+      _: 'lodash',
+      _join: ['lodash', 'join']
     })
   ],
   optimization: {
