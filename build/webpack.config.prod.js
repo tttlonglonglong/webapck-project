@@ -1,5 +1,6 @@
 const path = require('path')
 const merge = require('webpack-merge')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 const commonConfig = require('./webpack.common.js')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
@@ -14,7 +15,13 @@ const prodConfig = {
   devtool: 'cheap-module-source-map',
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin({})]
-  }
+  },
+  plugins: [
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    })
+  ]
 }
 
 module.exports = merge(commonConfig, prodConfig)

@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const devMode = process.env.NODE_ENV !== 'production'
 
 // console.log('NODE_ENV', NODE_ENV)
-console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+console.log('process. .NODE_ENV', process.env.NODE_ENV)
 
 function recursiveIssuer(m) {
   if (m.issuer) {
@@ -118,13 +118,13 @@ module.exports = {
       root: __dirname + '../',
       verbose: true
       // dry: false
-    }),
-    // 垫片
-    new webpack.ProvidePlugin({
-      $: 'jquery', // 模块中有 $ 字符串自动引入 jquery这个模块，并赋值给 $ 变量
-      _: 'lodash',
-      _join: ['lodash', 'join']
     })
+    // 垫片
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery', // 模块中有 $ 字符串自动引入 jquery这个模块，并赋值给 $ 变量
+    //   _: 'lodash',
+    //   _join: ['lodash', 'join']
+    // })
   ],
   optimization: {
     runtimeChunk: { name: 'runtime' },

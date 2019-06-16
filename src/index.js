@@ -1,11 +1,13 @@
-import _ from 'lodash'
-import $ from 'jquery'
-import { ui } from './jquery.ui'
-// ui()
-
-console.log('module---this', this)
-console.log('module---this---window', this === window)
-
-// const dom = $('div')
-// dom.html(_.join(['dell', 'lee', 'hello'], '------'))
-// $('body').append(dom)
+console.log('this is delle')
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('./service-worker.js')
+      .then(registration => {
+        console.log('service-worker 注册成功')
+      })
+      .catch(error => {
+        console.log('service-worker error', error)
+      })
+  })
+}
