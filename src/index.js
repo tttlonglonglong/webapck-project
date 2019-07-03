@@ -1,13 +1,17 @@
-console.log('this is delle')
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('./service-worker.js')
-      .then(registration => {
-        console.log('service-worker 注册成功')
-      })
-      .catch(error => {
-        console.log('service-worker error', error)
-      })
-  })
+import React, { Component } from 'react'
+import ReactDom from 'react-dom'
+import _ from 'lodash'
+import Child from './child/child.jsx'
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <p>{_.join(['this', ' is ', 'App'])}</p>
+        <Child />
+      </div>
+    )
+  }
 }
+
+ReactDom.render(<App />, document.getElementById('root'))
