@@ -5,35 +5,27 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
 const addAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 
-const plugins = [
-  new HtmlWebpackPlugin({
-    template: './index.html'
-  }),
-  new CleanWebpackPlugin()
-]
+// const plugins = [
+//   new HtmlWebpackPlugin({
+//     template: './index.html',
+//     // 打包之后的文件名
+//     filename: 'index.html',
+//     // 这个html要引入哪些模块
+//     chunks: ['runtime', 'vendors', 'main']
+//   }),
+//   new HtmlWebpackPlugin({
+//     template: './index.html',
+//     filename: 'list.html',
+//     chunks: ['runtime', 'vendors', 'list']
+//   }),
+//   new CleanWebpackPlugin()
+// ]
 
-const files = fs.readdirSync(path.resolve(__dirname, '../dll'))
-console.log('files----', files)
-files.forEach(file => {
-  if (/.*\.dll.js/.test(file)) {
-    plugins.push(
-      new addAssetHtmlWebpackPlugin({
-        filepath: path.resolve(__dirname, '../dll', file)
-      })
-    )
-  }
-  if (/.*\.manifest.json/.test(file)) {
-    plugins.push(
-      new webpack.DllReferencePlugin({
-        manifest: path.resolve(__dirname, '../dll', file)
-      })
-    )
-  }
-})
-
-module.exports = {
+const config = {
   entry: {
-    main: './src/index.js'
+    main: './src/index.js',
+    list: './src/list.js',
+    detail: './src/detail.js'
   },
   resolve: {
     // 引入目录下的模块的时候，找对应文件js结尾和jsx 结尾的文件
@@ -82,7 +74,7 @@ module.exports = {
       }
     ]
   },
-  plugins: plugins,
+  // plugins: plugins,
   // plugins: [
   //   new HtmlWebpackPlugin({
   //     template: './index.html'
@@ -139,3 +131,49 @@ module.exports = {
     path: path.resolve(__dirname, '../dist')
   }
 }
+
+const makePlugins = configs => {
+  const plugins = [new CleanWebpackPlugin()]
+
+  Object.keys(configs.entry).forEach(item => {
+    plugins.push(
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        // 打包之后的文件名
+        filename: `${item}.html`,
+        // 这个html要引入哪些模块
+        chunks: ['runtime', 'vendors', item]
+      })
+    )
+  })
+  // new HtmlWebpackPlugin({
+  //   template: './index.html',
+  //   // 打包之后的文件名
+  //   filename: 'index.html',
+  //   // 这个html要引入哪些模块
+  //   chunks: ['runtime', 'vendors', 'main']
+  // })
+
+  const files = fs.readdirSync(path.resolve(__dirname, '../dll'))
+  files.forEach(file => {
+    if (/.*\.dll.js/.test(file)) {
+      plugins.push(
+        new addAssetHtmlWebpackPlugin({
+          filepath: path.resolve(__dirname, '../dll', file)
+        })
+      )
+    }
+    if (/.*\.manifest.json/.test(file)) {
+      plugins.push(
+        new webpack.DllReferencePlugin({
+          manifest: path.resolve(__dirname, '../dll', file)
+        })
+      )
+    }
+  })
+
+  return plugins
+}
+
+config.plugins = makePlugins(config)
+module.exports = config
